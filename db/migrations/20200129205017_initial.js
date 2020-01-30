@@ -14,13 +14,13 @@ exports.up = function(knex) {
     })
     .createTable('posts', table => {
       table.increments('post_id').primary;
-      table.string('created_at');
+      table.string('post_created_at');
       table.integer('id');
       table.integer('retweet_count');
       table.integer('favorite_count');
       table.string('full_text');
       table.integer('user_id').unsigned();
-      table.foreign('user_id').references('users.user_id');
+      table.foreign('user_id').references('users.id');
 
       table.timestamps(true, true);
     })
