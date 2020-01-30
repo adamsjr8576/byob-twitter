@@ -1204,11 +1204,10 @@ const filteredTweets = tweets.filter(tweet => {
 });
 
 const tweetData = tweetUsers.map(user => {
-  const userTweets = filteredTweets.filter(tweet => tweet.user_id === user.user_id);
+  const user_posts = filteredTweets.filter(tweet => tweet.user_id === user.user_id);
   return {
     ...user,
-    userTweets
+    user_posts
   }
 })
-
-console.log(tweetData[0]);
+module.exports = tweetData;
