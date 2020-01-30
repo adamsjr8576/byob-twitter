@@ -27,6 +27,24 @@ app.get('/api/v1/users/:id', async (request, response) => {
   }
 });
 
+app.get('/api/v1/login/:username', async (request, response) => {
+  try {
+    const username = request.params.username;
+    const user = await database('users').where('user_screen_name', username).select();
+    if (user.length) {
+      userId = {
+        id: user[0].id
+      }
+      response.status(200).json(userId);
+    } else {
+      response.status(404).json({
+        error: `Login username: ${username} invalid. Please enter a valid username or create an account.`
+      });
+    }
+  } catch(error) {
+    response.status(500).json({ error });
+  }
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
