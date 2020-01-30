@@ -10,6 +10,13 @@
 * Get Specific User Posts: GET 'api/v1/users/:id/posts'
 * Get Specific Post: GET 'api/v1/posts/:id'
 
+| url | verb | options | sample response |
+| ----|------|---------|---------------- |
+| `http://localhost:3001/api/v1/:username` | GET | not needed | User id object: `{"id": 2420}` |
+| `http://localhost:3001/api/v1/users/:id` | GET | not needed | User data object: `{"id": 2323, "user_id": 4, "user_name": "Nevada News", "user_screen_name": "Nevada", "user_description": "Latest news for Nevada.", "user_location": "Nevada, USA", "user_created_at": "2011-04-10 00:00:17", "created_at": "2020-01-30T05:51:48.248Z", "updated_at": "2020-01-30T05:51:48.248Z"}` |
+| `api/v1/users/:id/posts` | GET | not needed | Array of user post objects: `[{}, {}]` |
+| `api/v1/posts/:id` | GET | not needed | post object: `{...}` |
+
 ### User-Login
 ---
   This GET request will fetch a specific user's ID resulting in a response containing an object with that specific ID.
