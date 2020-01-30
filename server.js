@@ -66,6 +66,23 @@ app.get('/api/v1/users/:id/posts', async (request, response) => {
   }
 });
 
+app.get('/api/v1/posts/:date', async (request, response) => {
+  try {
+    const date = request.params.date;
+    const posts = await database('posts').where('post_created_at', date).select();
+    console.log(posts);
+    if (posts.length) {
+      response.status(200).json(posts)
+    } else {
+      response.status(404).json({
+        error: `No posts where found for the date of ${date}`
+      });
+    }
+  } catch(error) {
+    response.status(500).json({ error });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
