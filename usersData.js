@@ -1199,7 +1199,13 @@ const tweetUserIds = tweetUsers.map(user => {
   return user.user_id;
 });
 
-const filteredTweets = tweets.filter(tweet => {
+const tweetDates = tweets.map(tweet => {
+  const splitTweetDate = tweet.created_at.split(' ');
+  tweet.created_at = splitTweetDate[0];
+  return tweet;
+});
+
+const filteredTweets = tweetDates.filter(tweet => {
   return tweetUserIds.includes(tweet.user_id);
 });
 
