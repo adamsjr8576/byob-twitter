@@ -5,10 +5,54 @@
 
 ## Open Endpoints
 
-* User Login: GET '/api/v1/login/:username'
+* [User Login](#User-Login): GET '/api/v1/login/:username'
 * [Get Specific User Data](#Get-User-Data): GET '/api/v1/users/:id'
 * Get Specific User Posts: GET 'api/v1/users/:id/posts'
 * Get Specific Post: GET 'api/v1/posts/:id'
+
+### User-Login
+---
+  This GET request will fetch a specific user's ID resulting in a response containing an object with that specific ID.
+
+**URL:** `/api/v1/login/:username`
+
+**METHOD:** `GET`
+
+**URL PARAMS:**
+* **Required:** `username=[string]`
+
+### Successful Response:
+**Code:** `200 OK`
+
+**Example Response:**
+    For a user with a username of 'afahour'
+    
+    json
+    {
+      "id": 2420
+    }
+    
+### Unsuccessful Response:
+**Code:** `404 Not Found`
+
+**Content:**
+
+    json
+    {
+      "error": "Login username: [username] invalid. Please enter a valid username or create an account."
+    }
+    
+    
+##### OR
+
+**Code:** `500 Internal Server Error`
+
+**Content:**
+
+  json
+  {
+    "error": "500 Internal Server Error"
+  }
 
 ### Get-User-data
 ---
