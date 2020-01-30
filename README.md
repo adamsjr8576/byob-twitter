@@ -21,13 +21,13 @@
 **URL PARAMS:**
 * **Required:** `id=[integer]`
 
-#### Successful Response:
+### Successful Response:
 **Code:** `200 OK`
 
 **Example Response:**
     For a user with an id of 2323
     
-    ```json
+    json
     {
     
       "id": 2323,
@@ -49,17 +49,17 @@
       "updated_at": "2020-01-30T05:51:48.248Z"
       
     }
-    ```
-#### Unsuccessful Response:
+    
+### Unsuccessful Response:
 **Code:** `404 Not Found`
 
 **Content:**
 
-    ```json
+    json
     {
       "error": "Could not locate a user with the ID of [id]"
     }
-    ```
+    
     
 ##### OR
 
@@ -67,8 +67,8 @@
 
 **Content:**
 
-  ```json
+  json
   {
     "error": "500 Internal Server Error"
   }
-  ```
+  
