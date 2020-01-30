@@ -46,6 +46,26 @@ app.get('/api/v1/login/:username', async (request, response) => {
   }
 });
 
+app.get('/api/v1/users/:id/posts', async (request, response) => {
+  try {
+    const id = request.params.id;
+    const user = await database('users').where('id', id).select();
+    if(!user.length) {
+      return response.status(404).json({ error: `Unable to find a user with the id of ${id}` })
+    }
+    const userPosts = await database('posts').where('user_id', id).select();
+    if (userPosts.length) {
+      response.status(200).json(userPosts);
+    } else {
+      response.status(404).json({
+        error: `User ${user[0].user_screen_name} has not made any posts.`
+      });
+    }
+  } catch(error) {
+    response.status(500).json({ error });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
