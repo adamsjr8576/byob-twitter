@@ -15,12 +15,15 @@
   This GET request will fetch a specific users Data resulting in a response containing an object.
 
 **URL:** `/api/v1/users/:id`
+
 **METHOD:** `GET`
+
 **URL PARAMS:**
 * **Required:** `id=[integer]`
 
 #### Successful Response:
 **Code:** `200 OK`
+
 **Example Response:**
     For a user with an id of 2323
     ```json
