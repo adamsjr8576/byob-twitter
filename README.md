@@ -8,7 +8,7 @@
 * [User-Login](#User-Login): GET '/api/v1/login/:username'
 * [Get-Specific-User-Data](#Get-User-Data): GET '/api/v1/users/:id'
 * [Get-Specific-User-Posts](#Get-Specific-User-Posts): GET 'api/v1/users/:id/posts'
-* Get Specific Post: GET 'api/v1/posts/:id'
+* [Get-Specific-Post](#Get-Specific-Post): GET 'api/v1/posts/:id'
 
 | url | verb | options | sample response |
 | ----|------|---------|---------------- |
@@ -176,6 +176,69 @@
     {
       "error": "User [username] has not made any posts."
     }
+
+**Code:** `500 Internal Server Error`
+
+**Content:**
+
+  json
+  {
+    "error": "500 Internal Server Error"
+  }
+  
+  ## Get-Specific-Post
+---
+  This GET request will fetch with a param of date and return a response containing an array of post objects that were made on that date
+
+**URL:** `/api/v1/posts/:date`
+
+**METHOD:** `GET`
+
+**URL PARAMS:**
+* **Required:** `date=[string]` example: `2019-05-18`
+
+### Successful Response:
+**Code:** `200 OK`
+
+**Example Response:**
+    For a date of 2019-05-18
+    
+    json
+    [{
+        "post_id": 1687,
+        "post_created_at": "2019-05-18",
+        "id": 5,
+        "retweet_count": 0,
+        "favorite_count": 0,
+        "full_text": "@EcoInternetDrGB I feel we have now lost all hope. I have lost all hope in the future of Australia. Apologies to the World for this election",
+        "user_id": 2473,
+        "created_at": "2020-01-30T21:53:23.221Z",
+        "updated_at": "2020-01-30T21:53:23.221Z"
+    },
+    {
+        "post_id": 1928,
+        "post_created_at": "2019-05-18",
+        "id": 5,
+        "retweet_count": 0,
+        "favorite_count": 1,
+        "full_text": "Australia's shock election results are drawing comparisons to Trump's 2016 win https://t.co/TBYSYKtClC #2020Elections #Elections #2019Elections #Politics",
+        "user_id": 2560,
+        "created_at": "2020-01-30T21:53:23.345Z",
+        "updated_at": "2020-01-30T21:53:23.345Z"
+    }]
+    
+### Unsuccessful Response:
+**Code:** `404 Not Found`
+
+**Content:**
+
+    json
+    {
+      "error": "No posts where found for the date of 2019-5-18"
+    }
+    
+    
+##### OR
 
 **Code:** `500 Internal Server Error`
 
