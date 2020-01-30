@@ -8,7 +8,7 @@
 * [User-Login](#User-Login): GET '/api/v1/login/:username'
 * [Get-Specific-User-Data](#Get-User-Data): GET '/api/v1/users/:id'
 * [Get-Specific-User-Posts](#Get-Specific-User-Posts): GET 'api/v1/users/:id/posts'
-* [Get-Specific-Post](#Get-Specific-Post): GET 'api/v1/posts/:id'
+* [Get-Post-By-Date](#Get-Post-By-Date): GET 'api/v1/posts/:id'
 
 | url | verb | options | sample response |
 | ----|------|---------|---------------- |
@@ -186,7 +186,7 @@
     "error": "500 Internal Server Error"
   }
   
-  ## Get-Specific-Post
+  ## Get-Post-By-Date
 ---
   This GET request will fetch with a param of date and return a response containing an array of post objects that were made on that date
 
