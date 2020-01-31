@@ -1,7 +1,7 @@
 # Twitter users and posts around Australian election
   This database is a small subset of a database containing all Twitter users and their posts pertaining to an Australian election. This was created for a school project while at Turing School of Software Design & Development and contains all open endpoints that require no authentication.
 
-  The server can be accessed via the root URL: 'http://localhost:3000'
+  The server can be accessed via the root URL: 'https://byob-twitter.herokuapp.com'
 
 ## Open Endpoints
 
