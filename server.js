@@ -70,7 +70,6 @@ app.get('/api/v1/posts/:date', async (request, response) => {
   try {
     const date = request.params.date;
     const posts = await database('posts').where('post_created_at', date).select();
-    console.log(posts);
     if (posts.length) {
       response.status(200).json(posts)
     } else {
