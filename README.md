@@ -5,10 +5,11 @@
 
 ## Open Endpoints
 
-* [User-Login](#User-Login): GET '/api/v1/login/:username'
-* [Get-Specific-User-Data](#Get-User-Data): GET '/api/v1/users/:id'
-* [Get-Specific-User-Posts](#Get-Specific-User-Posts): GET 'api/v1/users/:id/posts'
-* [Get-Post-By-Date](#Get-Post-By-Date): GET 'api/v1/posts/:id'
+* [GET-User-id](#GET-User-id): GET '/api/v1/login/:username'
+* [GET-Specific-User-Data](#GET-Specific-User-Data): GET '/api/v1/users/:id'
+* [GET-Specific-User-Posts](#GET-Specific-User-Posts): GET 'api/v1/users/:id/posts'
+* [GET-Post-By-Date](#GET-Post-By-Date): GET 'api/v1/posts/:id'
+* [POST-user](#POST-User): POST 'api/v1/users'
 
 | url | verb | options | sample response |
 | ----|------|---------|---------------- |
@@ -16,8 +17,10 @@
 | `http://localhost:3001/api/v1/users/:id` | GET | not needed | User data object: `{"id": 2323, "user_id": 4, "user_name": "Nevada News", "user_screen_name": "Nevada", "user_description": "Latest news for Nevada.", "user_location": "Nevada, USA", "user_created_at": "2011-04-10 00:00:17", "created_at": "2020-01-30T05:51:48.248Z", "updated_at": "2020-01-30T05:51:48.248Z"}` |
 | `api/v1/users/:id/posts` | GET | not needed | Array of user post objects: `[{"post_id": 1225,"post_created_at": "2019-05-19 07:49:34","id": 5,"retweet_count": 0,"favorite_count": 0,"full_text": "In Coal We Trust-Australia's Voters Back PM Morrison's Faith in Fossil Fuel\" by Reuters via NYT https://t.co/M8lun6WJtv","user_id": 2419,"created_at": "2020-01-30T05:51:48.499Z","updated_at": "2020-01-30T05:51:48.499Z"},...]` |
 | `api/v1/posts/:date` | GET | not needed | Array of post objects by date: `[{"post_id": 1687,"post_created_at": "2019-05-18","id": 5,"retweet_count": 0,"favorite_count": 0,"full_text": "@EcoInternetDrGB I feel we have now lost all hope. I have lost all hope in the future of Australia. Apologies to the World for this election","user_id": 2473,"created_at": "2020-01-30T21:53:23.221Z","updated_at": "2020-01-30T21:53:23.221Z"},...]` |
+| `api/v1/users` | POST | body: `{'user_name': [string], 'user_screen_name': [string], 'user_description': [string], 'user_location'}: [string]`| User's ID: `{ "id": [integer]}` |
 
-## User-Login
+
+## GET-User-id
 ---
   This GET request will fetch a specific user's ID resulting in a response containing an object with that specific ID.
 
@@ -61,7 +64,7 @@
     "error": "500 Internal Server Error"
   }
 
-## Get-User-data
+## GET-User-data
 ---
   This GET request will fetch a specific users Data resulting in a response containing an object.
 
@@ -114,7 +117,7 @@
     "error": "500 Internal Server Error"
   }
   
-  ## Get-Specific-User-Posts
+  ## GET-Specific-User-Posts
 ---
   This GET request will fetch a specific user's posts resulting in a response containing an array of post objects that belong to that user.
 
@@ -186,7 +189,7 @@
     "error": "500 Internal Server Error"
   }
   
-  ## Get-Post-By-Date
+  ## GET-Post-By-Date
 ---
   This GET request will fetch with a param of date and return a response containing an array of post objects that were made on that date
 
