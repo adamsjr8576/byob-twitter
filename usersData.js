@@ -1,4 +1,4 @@
-const tweets = require('./postsDAta.js');
+const tweets = require('./postsData.js');
 
 const tweetUsers = [
   {
