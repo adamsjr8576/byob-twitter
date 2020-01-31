@@ -82,6 +82,25 @@ app.get('/api/v1/posts/:date', async (request, response) => {
   }
 });
 
+app.post('/api/v1/users', async (request, response) => {
+  const user = request.body;
+
+  for (let requiredParameter of ['user_name', 'user_screen_name', 'user_description', 'user_location']) {
+    if (!user[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { user_name: <String>, user_screen_name: <String>, user_description: <String>, user_location: <String> }. You're missing a "${requiredParameter}" property.` });
+    }
+  }
+
+  try {
+    const id = await database('users').insert(user, 'id');
+    response.status(201).json(user)
+  } catch(error) {
+    response.status(500).json({ error });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
