@@ -111,9 +111,8 @@ app.post('/api/v1/users/:id/posts', async (request, response) => {
     }
   }
   try {
-    console.log(post);
     const id = await database('posts').insert(post, 'post_id');
-    response.status(201).json({ id })
+    response.status(201).json({ id[0] })
   } catch(error) {
     response.status(500).json({ error });
   }
