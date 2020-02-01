@@ -102,27 +102,17 @@ app.post('/api/v1/users', async (request, response) => {
 });
 
 app.post('/api/v1/users/:id/posts', async (request, response) => {
-  let post = request.body;
-
-  for (let requiredParameter of ['retweet_count', 'favorite_count', 'full_text', 'user_id']) {
+  const post = request.body;
+  for (let requiredParameter of ['post_created_at', 'retweet_count', 'favorite_count', 'full_text', 'user_id']) {
     if (!post[requiredParameter]) {
       return response
         .status(422)
         .send({ error: `Expected format: { retweet_count: <Integer>, favorite_count: <Integer>, full_text: <String>, user_id: <Integer> }. You're missing a "${requiredParameter}" property.` });
     }
   }
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  var yyyy = today.getFullYear();
-
-  today = yyyy + '-' + mm + '-' + dd;
-  post = {
-    post_created_at: today,
-    ...post
-  }
   try {
-    const id = await database('posts').insert(post, 'id');
+    console.log(post);
+    const id = await database('posts').insert(post, 'post_id');
     response.status(201).json({ id })
   } catch(error) {
     response.status(500).json({ error });
