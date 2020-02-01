@@ -9,7 +9,8 @@
 * [GET-Specific-User-Data](#GET-Specific-User-Data): GET '/api/v1/users/:id'
 * [GET-Specific-User-Posts](#GET-Specific-User-Posts): GET 'api/v1/users/:id/posts'
 * [GET-Post-By-Date](#GET-Post-By-Date): GET 'api/v1/posts/:id'
-* [POST-user](#POST-User): POST 'api/v1/users'
+* [POST-User](#POST-User): POST 'api/v1/users'
+* [POST-User-Post](#POST-User-Post): POST 'api/v1/users'
 
 | url | verb | options | sample response |
 | ----|------|---------|---------------- |
@@ -253,7 +254,7 @@
   }
   
   
-## POST-user
+## POST-User
 ---
   This POST request will post a users information needed to create an account to the users database resulting in a response containing that users unique id.
 
@@ -308,4 +309,62 @@
   {
     "error": "500 Internal Server Error"
   }
+  
+  ## POST-User-Post
+---
+  This POST request will create a user's post and store it in the posts database. The user's id is required int he body in order to make the post connecting it to the user. The current date is also required 
+
+**URL:** `/api/v1/users`
+
+**METHOD:** `POST`
+
+**URL PARAMS:**
+* **Required:** NONE
+
+**Body Requirements:**
+
+  ```
+  json
+  {
+    "user_name": [string],
+    "user_screen_name": [string],
+    "user_description": [string],
+    "user_location": [string]
+  }
+  ```
+
+### Successful Response:
+**Code:** `201 CREATED`
+
+**Example Response:**
+    For a user with an id of '22'
+    
+    json
+    {
+      "id": 22
+    }
+    
+### Unsuccessful Response:
+**Code:** `422 Unprocessable Entity`
+
+**Content:**
+
+    json
+    {
+      "error": "Expected format: { user_name: <String>, user_screen_name: <String>, user_description: <String>, user_location:       <String> }. You're missing a \"user_location\" property."
+    }
+    
+    
+##### OR
+
+**Code:** `500 Internal Server Error`
+
+**Content:**
+
+  json
+  {
+    "error": "500 Internal Server Error"
+  }
+  
+
   
