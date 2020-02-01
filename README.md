@@ -252,3 +252,48 @@
     "error": "500 Internal Server Error"
   }
   
+  
+## POST-user
+---
+  This POST request will post a users information needed to create an account to the users database resulting in a response containing that users unique id.
+
+**URL:** `/api/v1/users`
+
+**METHOD:** `POST`
+
+**URL PARAMS:**
+* **Required:** NONE
+
+### Successful Response:
+**Code:** `200 OK`
+
+**Example Response:**
+    For a user with an id of '22'
+    
+    json
+    {
+      "id": 22
+    }
+    
+### Unsuccessful Response:
+**Code:** `404 Not Found`
+
+**Content:**
+
+    json
+    {
+      "error": "Login username: [username] invalid. Please enter a valid username or create an account."
+    }
+    
+    
+##### OR
+
+**Code:** `500 Internal Server Error`
+
+**Content:**
+
+  json
+  {
+    "error": "500 Internal Server Error"
+  }
+  
