@@ -265,13 +265,14 @@
 * **Required:** NONE
 
 **Body Requirements:**
-  `json
+
+  json 
   {
     "user_name": [string],
     "user_screen_name": [string],
     "user_description": [string],
     "user_location": [string]
-  }`
+  }
 
 ### Successful Response:
 **Code:** `201 CREATED`
