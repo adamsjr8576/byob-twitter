@@ -133,8 +133,8 @@ app.delete('/api/v1/users/:id/posts/:postid', async (request, response) => {
   const postId = request.params.postid;
   try {
     const user = await database('posts').where('post_id', postId).delete();
-    user? const message = 'successful delete' : const message = `post with id of ${postID} could not be found`;
-    response.status(201).json(message);
+    const message = user? 'successful delete' : `post with id of ${postID} could not be found`;
+    response.status(201).json(user);
   } catch(error) {
     response.status(500).json({ error });
   }
