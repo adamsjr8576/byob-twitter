@@ -134,7 +134,7 @@ app.delete('/api/v1/users/:id/posts/:postid', async (request, response) => {
   try {
     const post = await database('posts').where('post_id', postId).select();
     if (post.length){
-      response.status(404).json({
+      return response.status(404).json({
       error: `Could not locate a post with the ID of ${postId}`
       });
     }
