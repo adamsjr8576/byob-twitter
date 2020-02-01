@@ -103,7 +103,7 @@ app.post('/api/v1/users', async (request, response) => {
 
 app.post('/api/v1/users/:id/posts', async (request, response) => {
   let post = request.body;
-  for (let requiredParameter of ['post_created_at', 'retweet_count', 'favorite_count', 'full_text', 'user_id']) {
+  for (let requiredParameter of ['retweet_count', 'favorite_count', 'full_text', 'user_id']) {
     if (!post[requiredParameter]) {
       return response
         .status(422)
