@@ -11,6 +11,7 @@
 * [GET-Post-By-Date](#GET-Post-By-Date): GET 'api/v1/posts/:id'
 * [POST-User](#POST-User): POST 'api/v1/users'
 * [POST-User-Post](#POST-User-Post): POST 'api/v1/users'
+* [DELETE-User-Post](#DELETE-User-Post): DELETE 'api/v1/users/:id/posts/:postid'
 
 | url | verb | options | sample response |
 | ----|------|---------|---------------- |
@@ -20,6 +21,7 @@
 | `api/v1/posts/:date` | GET | not needed | Array of post objects by date: `[{"post_id": 1687,"post_created_at": "2019-05-18","id": 5,"retweet_count": 0,"favorite_count": 0,"full_text": "@EcoInternetDrGB I feel we have now lost all hope. I have lost all hope in the future of Australia. Apologies to the World for this election","user_id": 2473,"created_at": "2020-01-30T21:53:23.221Z","updated_at": "2020-01-30T21:53:23.221Z"},...]` |
 | `api/v1/users` | POST | body: `{'user_name': [string], 'user_screen_name': [string], 'user_description': [string], 'user_location'}: [string]`| User's ID: `{ "id": [integer]}` |
 | `api/v1/users/:id/posts` | POST | body: `{"retweet_count": [integer],"favorite_count": [integer],"full_text": [string],"user_id": [integer]}`| Post's ID: `{ "id": [integer]}` |
+| `api/v1/users/:id/posts/:postid` | DELETE | not needed | message: `successful delete` |
 
 
 ## GET-User-id
@@ -367,5 +369,43 @@
     "error": "500 Internal Server Error"
   }
   
+  ## DELETE-User-Post
+---
+  This DELETE request will delete a post that is specified by its id. There is no body, but a required param of the post's unique id that is used to determine which one to delete. The front end will have access to each post's unique id when they GET request that user's posts. 
 
+**URL:** `api/v1/users/:id/posts/:postid`
+
+**METHOD:** `DELETE`
+
+**URL PARAMS:**
+* **Required:** User ID: `id=[integer]` Post ID: `postid=[integer]`
+
+### Successful Response:
+**Code:** `204 No Content`
+
+**Example Response:**
+    No content
+    
+### Unsuccessful Response:
+**Code:** `404 Not Found`
+
+**Content:**
+
+    json
+    {
+      "error": "Could not locate a post with the ID of [postid]"
+    }
+    
+    
+##### OR
+
+**Code:** `500 Internal Server Error`
+
+**Content:**
+
+  json
+  {
+    "error": "500 Internal Server Error"
+  }
+  
   
