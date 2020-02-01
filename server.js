@@ -132,8 +132,14 @@ app.post('/api/v1/users/:id/posts', async (request, response) => {
 app.delete('/api/v1/users/:id/posts/:postid', async (request, response) => {
   const postId = request.params.postid;
   try {
-    const user = await database('posts').where('post_id', postId).delete();
-    const message = user? 'successful delete' : `post with id of ${postID} could not be found`;
+    const post = await database('posts').where('post_id', postId).select();
+    if (post.length){
+      response.status(404).json({
+      error: `Could not locate a post with the ID of ${postId}`
+      });
+    }
+    const postDelete = await database('posts').where('post_id', postId).delete();
+    const message = postDelete? 'successful delete' : `post with id of ${postID} could not be found`;
     response.status(201).json(message);
   } catch(error) {
     response.status(500).json({ error });
