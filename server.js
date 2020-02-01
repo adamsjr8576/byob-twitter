@@ -129,6 +129,16 @@ app.post('/api/v1/users/:id/posts', async (request, response) => {
   }
 });
 
+app.delete('/api/v1/users/:id/posts/:postid', async (request, response) => {
+  const postId = request.params.postid;
+  try {
+    const user = await database('posts').where('post_id', postId).delete();
+    response.status(201).json({ user })
+  } catch(error) {
+    response.status(500).json({ error });
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on http://localhost:${app.get('port')}.`);
 });
