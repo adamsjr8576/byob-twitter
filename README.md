@@ -19,6 +19,7 @@
 | `api/v1/users/:id/posts` | GET | not needed | Array of user post objects: `[{"post_id": 1225,"post_created_at": "2019-05-19 07:49:34","id": 5,"retweet_count": 0,"favorite_count": 0,"full_text": "In Coal We Trust-Australia's Voters Back PM Morrison's Faith in Fossil Fuel\" by Reuters via NYT https://t.co/M8lun6WJtv","user_id": 2419,"created_at": "2020-01-30T05:51:48.499Z","updated_at": "2020-01-30T05:51:48.499Z"},...]` |
 | `api/v1/posts/:date` | GET | not needed | Array of post objects by date: `[{"post_id": 1687,"post_created_at": "2019-05-18","id": 5,"retweet_count": 0,"favorite_count": 0,"full_text": "@EcoInternetDrGB I feel we have now lost all hope. I have lost all hope in the future of Australia. Apologies to the World for this election","user_id": 2473,"created_at": "2020-01-30T21:53:23.221Z","updated_at": "2020-01-30T21:53:23.221Z"},...]` |
 | `api/v1/users` | POST | body: `{'user_name': [string], 'user_screen_name': [string], 'user_description': [string], 'user_location'}: [string]`| User's ID: `{ "id": [integer]}` |
+| `api/v1/users/:id/posts` | POST | body: `{"retweet_count": [integer],"favorite_count": [integer],"full_text": [string],"user_id": [integer]}`| Post's ID: `{ "id": [integer]}` |
 
 
 ## GET-User-id
@@ -314,7 +315,7 @@
 ---
   This POST request will create a user's post and store it in the posts database. The user's id is required int he body in order to make the post connecting it to the user. The current date is also required 
 
-**URL:** `/api/v1/users`
+**URL:** `/api/v1/users/:id/posts`
 
 **METHOD:** `POST`
 
@@ -326,10 +327,10 @@
   ```
   json
   {
-    "user_name": [string],
-    "user_screen_name": [string],
-    "user_description": [string],
-    "user_location": [string]
+    "retweet_count": [integer],
+    "favorite_count": [integer],
+    "full_text": [string],
+    "user_id": [integer]
   }
   ```
 
@@ -337,11 +338,11 @@
 **Code:** `201 CREATED`
 
 **Example Response:**
-    For a user with an id of '22'
+    That specific post's id
     
     json
     {
-      "id": 22
+      "id": 524
     }
     
 ### Unsuccessful Response:
@@ -351,7 +352,7 @@
 
     json
     {
-      "error": "Expected format: { user_name: <String>, user_screen_name: <String>, user_description: <String>, user_location:       <String> }. You're missing a \"user_location\" property."
+     "error": "Expected format: { retweet_count: <Integer>, favorite_count: <Integer>, full_text: <String>, user_id: <Integer>      }. You're missing a [property name] property."
     }
     
     
