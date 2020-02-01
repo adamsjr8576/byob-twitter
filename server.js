@@ -139,7 +139,7 @@ app.delete('/api/v1/users/:id/posts/:postid', async (request, response) => {
       });
     }
     const postDelete = await database('posts').where('post_id', postId).delete();
-    response.status(204);
+    response.status(204).json(postDelete);
   } catch(error) {
     response.status(500).json({ error });
   }
