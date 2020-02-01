@@ -264,8 +264,17 @@
 **URL PARAMS:**
 * **Required:** NONE
 
+**Body Requirements:**
+  json
+  {
+    "user_name": [string],
+    "user_screen_name": [string],
+    "user_description": [string],
+    "user_location": [string]
+  }
+
 ### Successful Response:
-**Code:** `200 OK`
+**Code:** `201 CREATED`
 
 **Example Response:**
     For a user with an id of '22'
@@ -276,13 +285,13 @@
     }
     
 ### Unsuccessful Response:
-**Code:** `404 Not Found`
+**Code:** `422 Unprocessable Entity`
 
 **Content:**
 
     json
     {
-      "error": "Login username: [username] invalid. Please enter a valid username or create an account."
+      "error": "Expected format: { user_name: <String>, user_screen_name: <String>, user_description: <String>, user_location:       <String> }. You're missing a \"user_location\" property."
     }
     
     
